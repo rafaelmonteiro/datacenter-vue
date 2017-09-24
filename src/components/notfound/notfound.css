@@ -1,0 +1,17 @@
+.panel-default{
+	max-width: 600px;
+	margin: auto;
+	margin-top: 3%
+}
+img{
+	max-width: 30px;
+}
+.page-header{
+	margin-top: 0;
+	padding: 5px 15px;
+}
+.pull-left{
+	font-weight: bold;
+	line-height: 30px;
+    vertical-align: bottom;
+}
