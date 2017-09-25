@@ -1,0 +1,9 @@
+{
+ "name": "datacenter-vue",
+ "version": "1.0.0",
+ "description": "A datacenter CRUD",
+ "private": true,
+ "scripts": {
+   "postinstall": "npm install express"
+ }
+}
