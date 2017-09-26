@@ -2,7 +2,7 @@ export default {
   name: "UpdateRam",
   data: function() {
     return {
-      rams: [],
+      rams: [],      
       apiErrors: null
     }
   },
@@ -16,7 +16,7 @@ export default {
       }
   },
   computed: {
-    isUpdate() { return this.ram.id },
+    isUpdate() { return this.$route.params.id },
   },
   methods: {
     submit(){
@@ -28,33 +28,13 @@ export default {
       });
     },
     update(){
-      this.$http.put('api/servers/' + this.$route.params.id + '/ram/' + this.ram.id, this.ram)
+      this.$http.put('api/servers/' + this.$route.params.id + '/rams/' + this.ram.id, this.ram)
       .then(response => {
-          this.clear()
-          this.$root.$refs.toastr.s("RAM module successfully updated");
-          // this.$emit('change', this.ram)
+          this.$root.$refs.toastr.s("RAM modules successfully updated");
+          this.$emit('change', this.ram)
       }, response => {
         this.apiErrors = response.body
       });
-    },
-    insert() {
-      this.$http.post('api/servers/' + this.$route.params.id + '/ram', this.ram)
-       .then(response => {
-        this.clear()
-        // this.$emit('change', this.ram)
-
-        this.$root.$refs.toastr.s("RAM module successfully inserted");
-      }, response => {
-        this.apiErrors = response.body
-      });
-    },
-    clear() {
-        Object.keys(this.ram).forEach(key => {
-          if (typeof(this.ram[key]) == 'string') this.ram[key] = '';
-          if (typeof(this.ram[key]) == 'number') this.ram[key] = 0;
-        });
-        this.ram.id = ''
-        this.ram.server_id = this.$route.params.id
     }
   },
   created(){
@@ -64,6 +44,5 @@ export default {
     }, response => {
       this.apiErrors = response.body
     });
-  },
-  components: {}
+  }
 }

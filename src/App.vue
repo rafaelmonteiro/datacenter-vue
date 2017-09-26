@@ -32,6 +32,11 @@ export default {
       }
       catch(e){ }
 
+      if (param.status == 500) {
+        this.$root.$refs.toastr.e("There was an error with your request");
+        return;
+      }
+
       if (param.status == 401 && data.error != 'invalid_credentials') {
         this.$root.$refs.toastr.e("Session expired");
         this.$root.$data.isAuthenticated = false;

@@ -53,9 +53,9 @@ export default {
           window.scrollTo(0,0);
         },
         remove(rowData) {
-            this.$root.$refs.modal.confirm('Do you want to remove RAM of \'' + rowData.server.id + '\' ?', {
+            this.$root.$refs.modal.confirm('Do you want to remove RAM \'' + rowData.id + '\' ?', {
               yes: () => {
-                this.$http.delete('api/servers/' + this.$route.params.id + '/ram/' + rowData.id)
+                this.$http.delete('api/servers/' + this.$route.params.id + '/rams/' + rowData.id)
                 .then(response => {
                     this.$root.$refs.toastr.s("RAM module successfully removed");
                     this.search();

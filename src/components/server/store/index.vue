@@ -16,16 +16,20 @@
               <money v-validate="'required'" class="form-control" v-model="server.price" name="price"></money>
             </field-validation> 
             <field-validation cssClass="col-md-3" :status="errors" :custom-errors="apiErrors" label="Brand" field="brand_id">
-              <select v-validate="'required'" class="form-control" v-model="server.brand_id" name="server.brand_id" data-vv-as="brand">
+              <select class="form-control" v-model="server.brand_id" name="server.brand_id" data-vv-as="brand">
                 <option v-for="option in brands" v-bind:value="option.id">{{ option.name }}</option>
+              </select>
+            </field-validation>
+            <field-validation cssClass="col-md-2" :status="errors" :custom-errors="apiErrors" v-if="!isUpdate" label="RAM" field="ram_id">
+              <select class="form-control" v-model="server.ram_id" name="server.ram_id" data-vv-as="type">
+                <option v-for="option in rams" v-bind:value="option.id">{{ option.type }} - {{ option.size }}GB</option>
               </select>
             </field-validation> 
              <div v-show="isUpdate">
-                <div class="col-md-2" title="Update / Insert RAM modules">
+                <div class="col-md-2" title="Insert RAM modules">
                   <label>&nbsp;</label>
                   <router-link class="btn btn-default btn-block" :to="{ path: '/servers/' + server.id + '/ram' }">
                     <i class="fa fa-file-text-o" aria-hidden="true"></i> RAM
-                    <!-- <span title="amount" class="badge">{{brands.length}}</span> -->
                   </router-link>
                 </div> 
               </div>

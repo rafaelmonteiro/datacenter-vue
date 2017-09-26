@@ -140,7 +140,8 @@ const router = new Router({
             path: '/logout',
             name: 'Logout',
             menu: {
-                label: 'Logout', 
+                label: 'Logout',
+                visible: false, 
                 right: true 
             }
         }

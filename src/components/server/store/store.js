@@ -6,9 +6,11 @@ export default {
         asset_id: null,
         name: '',
         price: '',
-        brand_id: ''
+        brand_id: '',
+        ram_id: ''
       },
       brands: [],
+      rams: [],
       apiErrors: null
     }
   },
@@ -59,11 +61,19 @@ export default {
       this.apiErrors = response.body
     });
 
+    this.$http.get('api/rams')
+    .then(response => {
+      this.rams = response.body; 
+    }, response => {
+      this.apiErrors = response.body
+    });
+
     if (!this.isUpdate) { return; }
 
     this.$http.get('api/servers/' + this.$route.params.id)
     .then(response => {
       this.server = response.body
+      localStorage.server = JSON.stringify(response.body)
     }, response => {
       this.apiErrors = response.body
     });
